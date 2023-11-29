@@ -25,7 +25,7 @@ class Country:
         gdp (int): The GDP of the country.
         government_type (GovernmentType): The type of government in the country.
     """
-    def __init__(self, name, capital, code, gross_domestic_product, **kwargs):
+    def __init__(self, name, **kwargs):
         """
         Initializes a new Country object.
 
@@ -37,9 +37,9 @@ class Country:
             kwargs: Additional attributes, such as population, area, and government_type.
         """
         self.name = name
-        self.capital = capital
-        self.code = code
-        self.gdp = gross_domestic_product
+        self.capital = kwargs.get('capital', None)
+        self.code = kwargs.get('code', None)
+        self.gdp = kwargs.get('gross_domestic_product', None)
         self.population = kwargs.get('population', None)
         self.area = kwargs.get('area', None)
         self.government_type = kwargs.get('government_type', None)
@@ -109,22 +109,23 @@ def choose_country(countries, criteria):
 
 if __name__ == "__main__":
     country1 = Country("USA",
-                       "Washington",
-                       "US", 21433225,
+                       capital="Washington",
+                       code="US", 
+                       gross_domestic_product=21433225,
                        population=331002651,
                        area=9372610,
                        government_type=GovernmentType.REPUBLIC)
     country2 = Country("Canada",
-                       "Ottawa",
-                       "CA",
-                       1785388,
+                       capital="Ottawa",
+                       code="CA",
+                       gross_domestic_product=1785388,
                        population=37742154,
                        area=9984670,
                        government_type=GovernmentType.DEMOCRACY)
     country3 = Country("China",
-                       "Beijing",
-                       "CN",
-                       1434293,
+                       capital="Beijing",
+                       code="CN",
+                       gross_domestic_product=1434293,
                        population=1439323776,
                        area=9596961,
                        government_type=GovernmentType.AUTOCRACY)

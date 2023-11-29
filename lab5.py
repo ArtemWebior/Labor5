@@ -25,14 +25,24 @@ class Country:
         gdp (int): The GDP of the country.
         government_type (GovernmentType): The type of government in the country.
     """
-    def __init__(self, name, capital, code, gross_domestic_product, *args):
+    def __init__(self, name, capital, code, gross_domestic_product, **kwargs):
+        """
+        Initializes a new Country object.
+
+        Args:
+            name (str): The name of the country.
+            capital (str): The capital city of the country.
+            code (str): The country code.
+            gross_domestic_product (int): The GDP of the country.
+            kwargs: Additional attributes, such as population, area, and government_type.
+        """
         self.name = name
         self.capital = capital
         self.code = code
-        self.population = args[0]
-        self.area = args[1]
         self.gdp = gross_domestic_product
-        self.government_type = args[2]
+        self.population = kwargs.get('population', None)
+        self.area = kwargs.get('area', None)
+        self.government_type = kwargs.get('government_type', None)
 
 class Land:
     """
@@ -98,9 +108,26 @@ def choose_country(countries, criteria):
     return filtered_countries
 
 if __name__ == "__main__":
-    country1 = Country("USA", "Washington", "US", 331002651, 9372610, 21433225, GovernmentType.REPUBLIC)
-    country2 = Country("Canada", "Ottawa", "CA", 37742154, 9984670, 1785388, GovernmentType.DEMOCRACY)
-    country3 = Country("China", "Beijing", "CN", 1439323776, 9596961, 1434293, GovernmentType.AUTOCRACY)
+    country1 = Country("USA",
+                       "Washington",
+                       "US", 21433225,
+                       population=331002651,
+                       area=9372610,
+                       government_type=GovernmentType.REPUBLIC)
+    country2 = Country("Canada",
+                       "Ottawa",
+                       "CA",
+                       1785388,
+                       population=37742154,
+                       area=9984670,
+                       government_type=GovernmentType.DEMOCRACY)
+    country3 = Country("China",
+                       "Beijing",
+                       "CN",
+                       1434293,
+                       population=1439323776,
+                       area=9596961,
+                       government_type=GovernmentType.AUTOCRACY)
 
     land1 = Land("North America")
     land1.add_country(country1)
